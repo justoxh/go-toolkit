@@ -1,0 +1,6 @@
+name = "miner"
+role = "manager"
+
+[cache]
+	expire_time = 10
+	cleanup_time = 30

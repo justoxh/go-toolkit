@@ -1,0 +1,21 @@
+name = "lino"
+
+[mysql]
+    hostname = "127.0.0.1"
+    port = "3306"
+    user = "root"
+    password = "123456"
+    dbName = "app_test"
+    tablePrefix = "table_"
+    maxOpenConnections = 0
+    maxIdleConnections = 0
+    connMaxLifetime = 0
+    debug = false
+
+[redis]
+host = "x7981920932190"
+port = "6379"
+password = ""
+idleTimeout = xx
+maxIdle = "mm9"
+maxActive = 5
