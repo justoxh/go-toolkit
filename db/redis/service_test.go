@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	_ "github.com/justoxh/go-toolkit/log"
+	"github.com/justoxh/go-toolkit/log/logruslogger"
 	"os"
 	"strconv"
 	"testing"
@@ -44,7 +46,10 @@ func InitService() *RedisCacheService {
 	var config_file1 string = "./pool_test_nopass.toml"
 	loadConfig(config_file1, config_relay1)
 	var redisService *RedisCacheService = &RedisCacheService{}
-	redisService.Initialize(config_relay1.Redis)
+	var conf = logruslogger.Options{
+	}
+	log := logruslogger.GetLoggerWithOptions("test",&conf)
+	redisService.Initialize(config_relay1.Redis,log)
 	return redisService
 }
 
@@ -56,7 +61,10 @@ func Test_Initialize_nopass(t *testing.T) {
 		t.Errorf("config item Name[%s] not equal miner", config_relay1.Name)
 	}
 	var redisService *RedisCacheService = &RedisCacheService{}
-	redisService.Initialize(config_relay1.Redis)
+	var conf = logruslogger.Options{
+	}
+	log := logruslogger.GetLoggerWithOptions("test",&conf)
+	redisService.Initialize(config_relay1.Redis,log)
 	// test connection no password
 	conn := redisService.pool.Get()
 	defer conn.Close()
@@ -80,7 +88,10 @@ func Test_Initialize_pass(t *testing.T) {
 		t.Errorf("config item Name[%s] not equal miner", config_relay1.Name)
 	}
 	var redisService *RedisCacheService = &RedisCacheService{}
-	redisService.Initialize(config_relay1.Redis)
+	var conf = logruslogger.Options{
+	}
+	log := logruslogger.GetLoggerWithOptions("test",&conf)
+	redisService.Initialize(config_relay1.Redis,log)
 	// test connection with password
 	conn := redisService.pool.Get()
 	defer conn.Close()

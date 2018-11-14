@@ -47,4 +47,5 @@ type Service interface {
 	LRpop(key string) ([]byte, error)
 	LLpop(key string) ([]byte, error)
 	LIndex(key string, index int64) ([]byte, error)
+	LLlen(key string) (int64, error)
 }

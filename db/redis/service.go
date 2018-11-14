@@ -825,3 +825,18 @@ func (service *RedisCacheService) LIndex(key string, index int64) ([]byte, error
 		return reply.([]byte), err
 	}
 }
+
+
+func (service *RedisCacheService) LLlen(key string) (int64, error) {
+	conn := service.pool.Get()
+	defer conn.Close()
+
+	reply, err := conn.Do("llen", key)
+	if nil != err {
+		service.log.Error("redis String llen", "key", key, "error", err.Error())
+		return 0, err
+	} else {
+		res := reply.(int64)
+		return res, err
+	}
+}
