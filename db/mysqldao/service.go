@@ -36,16 +36,18 @@ func NewRdsService(config MysqlConifg) (*RdsService, error) {
 	impl := &RdsService{}
 	impl.config = config
 
+	var url string
+
 	// "root@tcp(127.0.0.1:3306)/s3d?charset=utf8"
 	password := config.Password
 	if password != "" {
 		password = fmt.Sprintf(":%s", password)
 	}
 	if config.Local =="" {
-		url := fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&", config.User, password, "tcp", config.Hostname, config.Port,
+		url = fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&", config.User, password, "tcp", config.Hostname, config.Port,
 		config.DbName)
 	}else{
-		url := fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=%s", config.User, password, "tcp", config.Hostname, config.Port,
+		url = fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=%s", config.User, password, "tcp", config.Hostname, config.Port,
 		config.DbName,config.Local)
 	}
 	
