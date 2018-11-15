@@ -44,7 +44,7 @@ func NewRdsService(config MysqlConifg) (*RdsService, error) {
 		password = fmt.Sprintf(":%s", password)
 	}
 	if config.Local =="" {
-		url = fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&", config.User, password, "tcp", config.Hostname, config.Port,
+		url = fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True", config.User, password, "tcp", config.Hostname, config.Port,
 		config.DbName)
 	}else{
 		url = fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=%s", config.User, password, "tcp", config.Hostname, config.Port,
