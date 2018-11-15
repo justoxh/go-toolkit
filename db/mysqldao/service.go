@@ -22,6 +22,7 @@ type MysqlConifg struct {
 	MaxIdleConnections int
 	ConnMaxLifetime    int // unit second
 	Debug              bool
+	Local       string
 }
 
 // RdsService
@@ -40,9 +41,14 @@ func NewRdsService(config MysqlConifg) (*RdsService, error) {
 	if password != "" {
 		password = fmt.Sprintf(":%s", password)
 	}
-
-	url := fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True", config.User, password, "tcp", config.Hostname, config.Port,
+	if config.Local =="" {
+		url := fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&", config.User, password, "tcp", config.Hostname, config.Port,
 		config.DbName)
+	}else{
+		url := fmt.Sprintf("%s%s@%s(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=%s", config.User, password, "tcp", config.Hostname, config.Port,
+		config.DbName,config.Local)
+	}
+	
 
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return config.TablePrefix + defaultTableName
