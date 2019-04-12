@@ -221,6 +221,12 @@
 			"revisionTime": "2018-07-16T11:09:48Z"
 		},
 		{
+			"checksumSHA1": "nUjblhJZH+7SEGU5qmGQCt5C4k4=",
+			"path": "github.com/justoxh/go-toolkit/log",
+			"revision": "4f8e0f7afb92690774c4d32c43f9ebdb2aa47ede",
+			"revisionTime": "2019-04-11T14:53:27Z"
+		},
+		{
 			"checksumSHA1": "OT9HVGuuySNKBhqhDiS5Zj4ukLI=",
 			"path": "github.com/kylelemons/godebug/diff",
 			"revision": "d65d576e9348f5982d7f6d83682b694e731a45c6",
@@ -666,5 +672,5 @@
 			"revisionTime": "2018-03-28T19:50:20Z"
 		}
 	],
-	"rootPath": "github.com/justoxh/go-toolkit"
+	"rootPath": "go-toolkit"
 }

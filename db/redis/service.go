@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gomodule/redigo/redis"
-	"github.com/s3dteam/go-toolkit/log"
+	"github.com/justoxh/go-toolkit/log"
 )
 
 type RedisOptions struct {
