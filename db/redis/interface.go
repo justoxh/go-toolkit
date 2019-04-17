@@ -18,7 +18,7 @@ type Service interface {
 	SCard(key string) (int64, error)
 	SIsMember(key string, member []byte) (bool, error)
 	SMembers(key string) ([][]byte, error)
-
+	SetNX(key string,ttl int)(bool,error)
 	// zset
 	ZAdd(key string, ttl int64, args ...[]byte) error
 	ZRem(key string, args ...[]byte) (int64, error)
@@ -48,4 +48,5 @@ type Service interface {
 	LLpop(key string) ([]byte, error)
 	LIndex(key string, index int64) ([]byte, error)
 	LLlen(key string) (int64, error)
+
 }

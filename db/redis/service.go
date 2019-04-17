@@ -283,6 +283,23 @@ func (service *RedisCacheService) SRem(key string, members ...[]byte) (int64, er
 	}
 }
 
+func (service *RedisCacheService) SetNX(key string, value int64,ttl int64) error {
+	conn := service.pool.Get()
+	defer conn.Close()
+	if _, err := conn.Do("setnx", key, value); err != nil {
+		service.log.Error("redis String setnx", "key", key, "error", err.Error())
+		return err
+	}
+
+	if ttl > 0 {
+		if _, err := conn.Do("expire", key, ttl); err != nil {
+			service.log.Error("redis String setnx expire", "key", key, "ttl", ttl, "error", err.Error())
+			return err
+		}
+	}
+	return nil
+}
+
 func (service *RedisCacheService) SCard(key string) (int64, error) {
 	conn := service.pool.Get()
 	defer conn.Close()
