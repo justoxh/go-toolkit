@@ -18,7 +18,7 @@ type Service interface {
 	SCard(key string) (int64, error)
 	SIsMember(key string, member []byte) (bool, error)
 	SMembers(key string) ([][]byte, error)
-	SetNX(key string,ttl int)(bool,error)
+	SetNX(key string,value int64,ttl int)(bool,error)
 	// zset
 	ZAdd(key string, ttl int64, args ...[]byte) error
 	ZRem(key string, args ...[]byte) (int64, error)
